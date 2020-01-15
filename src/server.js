@@ -12,7 +12,8 @@ class App {
     }
 
     database() {
-        mongoose.connect("mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}>@schlickmannapps-unyax.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority", {
+        
+        mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@schlickmannapps-shard-00-00-unyax.mongodb.net:27017,schlickmannapps-shard-00-01-unyax.mongodb.net:27017,schlickmannapps-shard-00-02-unyax.mongodb.net:27017/${process.env.DB_NAME}?ssl=true&replicaSet=schlickmannapps-shard-0&authSource=admin&retryWrites=true&w=majority`, {
             useNewUrlParser: true, 
             useUnifiedTopology: true
         });
