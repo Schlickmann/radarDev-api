@@ -10,8 +10,6 @@ class App {
     constructor() {
         this.app = express();
         this.server = http.Server(this.app);
-        
-        WebSocket.setupWebSocket(this.server);
 
         this.database();
         this.middlewares();
@@ -29,6 +27,8 @@ class App {
     middlewares() {
         this.app.use(cors({ origin: `${process.env.WHITELIST}` }))
         this.app.use(express.json());
+        
+        WebSocket.setupWebSocket(this.server);
     }
 
     routes() {
