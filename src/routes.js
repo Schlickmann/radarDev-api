@@ -14,5 +14,6 @@ routes.post('/developers', DeveloperController.store);
 // search
 
 routes.get('/search', SearchController.index);
+routes.get('/filter', SearchController.show);
 
 module.exports = routes;

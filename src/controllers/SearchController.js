@@ -28,6 +28,20 @@ class SearchController {
         return res.json(developers);
     }
 
+    async show(req, res) {
+        const { search } = req.query;
+
+        const developers = await Developer.find({
+            $or: [
+                { techs: { $elemMatch: { $eq: search.toUpperCase() } } },
+                { github_username: { $regex: search } },
+                { name: { $regex: search } }
+            ]
+        });
+
+        return res.json(developers)
+    }
+
 
 }
 
